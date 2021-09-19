@@ -154,8 +154,7 @@ jobs:
           echo "Using CFLAGS: $CFLAGS"
           ./autogen.sh PKG_CONFIG_PATH=/usr/local/lib/pkgconfig \
               openssl_CFLAGS="$LIBRESSL_CFLAGS" openssl_LIBS="$LIBRESSL_LIBS" \
-              libzip_CFLAGS="$LIBZIP_CFLAGS" libzip_LIBS="$LIBZIP_LIBS" \
-              zlib_CFLAGS="-I${{env.SDKDIR}}/usr/include" zlib_LIBS="-lz" \
+              libzip_CFLAGS="$LIBZIP_CFLAGS -I${{env.SDKDIR}}/usr/include" libzip_LIBS="$LIBZIP_LIBS -lz" \
               libimobiledevice_CFLAGS="-I/usr/local/include ${{env.LIBRESSL_CFLAGS}}" libimobiledevice_LIBS="-L/usr/local/lib -lusbmuxd-2.0 -limobiledevice-glue-1.0 -limobiledevice-1.0 ${{env.LIBRESSL_LIBS}}"
     - name: make
       run: make
